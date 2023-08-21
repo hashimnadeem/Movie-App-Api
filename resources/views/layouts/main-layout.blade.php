@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{str_replace('_', '-', app()->getLocale())}}">
 <head>
-    <title>Page title</title>
+    <title>@yield('title')</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="css/tailwind/tailwind.min.css">
-    <link rel="icon" type="image/png" sizes="32x32" href="shuffle-for-tailwind.png">
-    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="/css/tailwind/tailwind.min.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/shuffle-for-tailwind.png">
+    <script src="/js/main.js"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="antialiased bg-body text-body font-body">
     <div class="">
-                
+
+    {{-- Navigation  --}}
       <section class="overflow-hidden">
         <div class="flex items-center justify-between px-8 py-5 bg-white">
           <div class="w-auto">
             <div class="flex flex-wrap items-center">
               <div class="w-auto mr-14">
-                <a href="#">
+                <a href="/">
                   <img src="gradia-assets/logos/gradia-name-black.svg" alt="">
                 </a>
               </div>
@@ -105,15 +107,12 @@
           </nav>
         </div>
       </section>
-                
+
+    {{-- Content  --}}
+    @yield('content')
       
-      
-                
-      
-      
-                
-      
-                
+
+    {{-- Footer  --}}       
       <section class="relative py-24 bg-black overflow-hidden">
         <img class="absolute bottom-0 left-0" src="gradia-assets/elements/footers/radial2.svg" alt="">
         <div class="relative z-10 container mx-auto px-4">
@@ -193,4 +192,3 @@
     </div>
 </body>
 </html>
-
