@@ -22,14 +22,18 @@ Route::get('/', function () {
 Route::get('/search', function (Request $request) {
 
     //return $request->input("query");
-    $query = "https://api.watchmode.com/v1/autocomplete-search/?apiKey=". env('WATCHMODE_KEY') . 
-    "&search_field=name&search_value=". $request->input('query');
+    $query = $request->input('query');
+    $request_url = "https://api.watchmode.com/v1/autocomplete-search/?apiKey=". env('WATCHMODE_KEY') . 
+    "&search_field=name&search_value=". $query;
     
 
-    $response = Http::get($query);
-    return $response->json();
-
-    return view('pages.results');
+    $response = Http::get($request_url);
+    $results = $response->json();
+    $results = $results['results'];
+    return view('pages.results', [
+        "results" => $results,
+        "query" => ucwords($query)
+    ]);
 });
 
 Route::get('/movie', function () {
